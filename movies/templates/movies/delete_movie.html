@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Delete Movie</h2>
+    <p>정말 "{{ movie.title }}" 게시물을 삭제할까요?</p>
+    <form method="POST">
+        {% csrf_token %}
+        <button class ='btn btn-danger' type="submit">Delete</button>
+    </form>
+{% endblock %}

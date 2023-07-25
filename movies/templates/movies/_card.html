@@ -1,0 +1,10 @@
+
+<div class="card">
+    <!-- <img src="{{ movie.imgfile.url }}" class="card-img-top" alt="..."> -->
+    <a href="{% url 'movie_detail' movie.pk %}" class='link-dark link-underline-opacity-0'>
+    <div class="card-body">
+        <h5 class="card-title">{{movie.title}}</h5>
+        <p class="card-text">{{movie.release}}</p>
+        <p class="card-text">{{movie.nation}}</p>
+    </div></a>
+</div>

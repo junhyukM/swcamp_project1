@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{ movie.title }}</h2>
+    <div class="container text-center">
+        <div class="row row-cols-auto">
+            <div class="col">
+                <form method="GET" action="delete/">
+                    {% csrf_token %}
+                    <button class ='btn btn-outline-danger' type="submit">Delete Movie</button>
+                </form>
+            </div>
+            <div class="col">
+                <form method="GET" action="update/">
+                    {% csrf_token %}
+                    <button class ='btn btn-outline-warning' type="submit">Edit Movie</button>
+                </form>  
+            </div>
+        </div>
+    </div>
+        
+        
+        
+    <hr>
+    <div>
+        <p>개봉일 : {{ movie.release }}</p>
+        <p>장르 : {{ movie.genre }}</p>
+        <p>국가 : {{ movie.nation }}</p>
+        <p>상영시간 : {{ movie.showtime }}</p>
+        <p>평점 : {{ movie.rating }}</p>
+        <p>감독 : {{ movie.director }}</p>
+        <p>출연진 : {{ movie.actor }}</p>
+        <p>관람등급 : {{ movie.grade }}</p>
+        <hr>
+    </div>
+    <p>줄거리 : {{ movie.content }}</p>
+    <hr>
+
+    <!-- Comment Form -->
+    <h4>댓글 작성</h4>
+    <form method="POST" action="{% url 'movie_detail' movie.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class ='btn btn-outline-primary' type="submit">작성</button>
+    </form>
+
+    <!-- 댓글 작성 -->
+    <hr>
+    <div>
+        <h3>작성된 댓글</h3>
+            <div>
+                {% for comment in movie.comments.all %}
+                <p>{{ comment.nickname }}: {{ comment.text }}</p>
+                <p>작성 날짜: {{ comment.created_at }}</p>
+                {% empty %}
+                <p>댓글을 작성하세요.</p>
+                {% endfor %}
+            </div>
+
+    </div>
+
+     
+{% endblock %}
+

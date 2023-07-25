@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h3>영화 정보 게시글</h3>
+  <!-- {% for movie in moives %}
+  {% include 'movies/_card.html' %}
+  {% endfor %}     -->
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+  {% for movie in movies %}
+    <div class="col">
+        <div class="card">
+            <!-- <img src="{{ movies.imgfile.url }}" class="card-img-top" alt="..."> -->
+            <a href="{% url 'movie_detail' movie.pk %}" class='link-dark link-underline-opacity-0'>
+            <div class="card-body">
+                <h5 class="card-title">{{movie.title}}</h5>
+                <p class="card-text">{{movie.release}}</p>
+                <p class="card-text">{{movie.nation}}</p>
+            </div></a>
+        </div>
+      </div>
+      {% endfor %}
+</div>
+  
+{% endblock %}
